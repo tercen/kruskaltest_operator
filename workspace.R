@@ -1,15 +1,34 @@
 library(tercen)
 library(dplyr)
 
-options("tercen.workflowId" = "wwww")
-options("tercen.stepId"     = "dddd")
+options("tercen.workflowId" = "d330322c43363eb4f9b27738ef0042b9")
+options("tercen.stepId"     = "0267186b-309e-4c40-babd-6f5139f52a6c")
 
-getOption("tercen.workflowId")
-getOption("tercen.stepId")
+do.kruskal = function(df, ...) {
+  pv = NaN
 
-(ctx = tercenCtx())  %>% 
-  select(.y, .ci, .ri) %>% 
+  grp <- unique(df$.group.colors)
+  a <- df$.y[df$.group.colors == grp[1]]
+  b <- df$.y[df$.group.colors == grp[2]]
+  
+  result = try(kruskal.test(a, b, ...), silent = TRUE)
+  if(!inherits(result, 'try-error')) {
+    statistic = result$statistic
+    parameter = result$statistic
+    p.value = result$p.value
+  } 
+  return (data.frame(.ri = df$.ri[1], .ci = df$.ci[1],
+                     statistic = c(statistic), parameter = c(parameter), p.value = c(p.value)))
+}
+
+ctx = tercenCtx()
+
+if (length(ctx$colors) < 1) stop("A color factor is required.")
+
+df <- ctx %>% 
+  select(.ci, .ri, .y) %>%
+  mutate(.group.colors = do.call(function(...) paste(..., sep='.'), ctx$select(ctx$colors))) %>%
   group_by(.ci, .ri) %>%
-  summarise(median = median(.y)) %>%
+  do(do.kruskal(.)) %>%
   ctx$addNamespace() %>%
   ctx$save()
