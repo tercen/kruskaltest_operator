@@ -1,6 +1,6 @@
 {
-  "name": "Kruskal-Wallis test",
-  "description": "Performs Kruskal-Wallis test",
+  "name": "Kruskal-Wallis Test",
+  "description": "A non-parametric method for testing whether samples originate from the same distribution. It is used for comparing two or more independent samples.",
   "tags": ["statistical testing", "test"],
   "authors": ["tercen"],
   "urls": ["https://github.com/tercen/kruskaltest_operator"]
