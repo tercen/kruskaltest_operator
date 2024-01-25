@@ -1,6 +1,6 @@
 {
   "name": "Kruskal-Wallis Test",
-  "description": "A non-parametric method for testing whether samples originate from the same distribution. It is used for comparing two or more independent samples.",
+  "description": "A non-parametric method for testing whether samples originate from the same distribution.",
   "tags": [
     "statistical testing"
   ],
