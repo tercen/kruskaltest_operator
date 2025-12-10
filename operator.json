@@ -20,12 +20,22 @@
         "metaFactors": [
           {
             "kind": "MetaFactor",
-            "name": "Groups",
+            "name": "Row",
             "type": "",
-            "description": "Represents the groups to compare",
-            "ontologyMapping": "group",
-            "crosstabMapping": "color",
-            "cardinality": "1..n",
+            "description": "Optional row factor.",
+            "ontologyMapping": "row",
+            "crosstabMapping": "row",
+            "cardinality": "0..n",
+            "factors": []
+          },
+          {
+            "kind": "MetaFactor",
+            "name": "Column",
+            "type": "",
+            "description": "Optional column factor.",
+            "ontologyMapping": "column",
+            "crosstabMapping": "column",
+            "cardinality": "0..n",
             "factors": []
           }
         ],
@@ -41,6 +51,16 @@
                 "ontologyMapping": "measurement",
                 "crosstabMapping": "y",
                 "cardinality": "1",
+                "factors": []
+              },
+              {
+                "kind": "MetaFactor",
+                "name": "Groups",
+                "type": "",
+                "description": "Represents the groups to compare",
+                "ontologyMapping": "group",
+                "crosstabMapping": "color",
+                "cardinality": "1..n",
                 "factors": []
               }
             ]
