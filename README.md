@@ -8,8 +8,10 @@ The `kruskaltest_operator` performs a Kruskal-Wallis test on the data.
 
 Input projection|.
 ---|---
-`color` | represents the groups to compare
 `y-axis`| measurement value
+`color` | represents the groups to compare
+`row`   | optional, row factor for stratification
+`column`| optional, column factor for stratification
 
 Output relations|.
 ---|---
